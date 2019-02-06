@@ -1,0 +1,38 @@
+{% extends "blog/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Mentalika | Sign Up{% endblock %}
+
+{% block content %}
+  <h2>Login</h2>
+    {% if form.errors %}
+        <p>Theres is something wrong with input data</p>
+    {% endif %}
+
+    {% if next %}
+        <p>No access here</p>
+    {% endif %}
+
+<div class="content-section">
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <fieldset class="form-group">
+              {% if form.errors %}
+                    <p>form.errors</p>
+              {% endif %}
+
+              {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+        <button class="btn btn-outline" type="submit" value="Login">Login</button>
+        <input type="hidden" name="next" value="{{ next }}">
+            </div>
+    </form>
+    <div class="border-top pt-3">
+      <small class="text-muted">
+        Don't have an account yet? <a class="ml-2" href="{% url 'register' %}">Register</a>
+      </small>
+    </div>
+</div>
+{% endblock %}

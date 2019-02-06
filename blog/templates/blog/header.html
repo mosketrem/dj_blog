@@ -1,0 +1,66 @@
+<nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
+      <div class="container">
+          <a class="navbar-brand" href="/">LOGO</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+
+            <ul class="navbar-nav ml-md-auto d-md-flex">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'create_post' %}">Write a Post</a>
+              </li>
+
+                <li class="nav-item dropdown">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          {{ user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if user.is_superuser %}
+                                 <a class="dropdown-item" href="{% url 'admin' %}">Administration</a>
+                            {% endif %}
+                          <a class="dropdown-item" href="{% url 'profile' user.username %}">Profile</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    {% else %}
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Enter
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+                          <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+
+                        </div>
+                     {% endif %}
+                 </li>
+
+
+
+
+            </ul>
+          </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="masthead" >
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Clean Blog</h1>
+              <span class="subheading">A Blog Theme by Start Bootstrap</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>

@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block head_title %}Mentalika | New Post{% endblock %}
+
+{% block title %}Create new post{% endblock %}
+
+{% block content %}
+  <h2>Create new post</h2>
+  <div class="content-section">
+    <form method="post">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        {% if form.errors %}
+          <p>form.errors</p>
+        {% endif %}
+
+        {{ form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline" type="submit" value="Register">Save</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

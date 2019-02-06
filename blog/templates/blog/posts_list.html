@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Mentalika | Posts{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        {% for post in posts %}
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-preview">
+                        <a href="{{ post.get_absolute_url }}">
+                            <h2 class="post-title">
+                            {{ post.title }}
+                            </h2>
+                        </a>
+                        <p class="post-meta">Posted by
+                            <a href="{% url 'profile' post.author.username %}">{{ post.author.username }}</a>
+                            on {{ post.when_created }}</p>
+                    </div>
+                    <p>{{ post.text|truncatechars:500|linebreaksbr }}</p>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endblock %}
